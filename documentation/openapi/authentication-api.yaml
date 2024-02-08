@@ -1,0 +1,43 @@
+openapi: "3.0.3"
+info:
+  title: "trial API"
+  description: "trial API"
+  version: "1.0.0"
+servers:
+  - url: "https://localhost:8080/"
+paths:
+  /api/v1/login:
+    post:
+      summary: "POST api/v1/api/v1/login"
+      operationId: "create"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginPayload"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+components:
+  schemas:
+    LoginPayload:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          format: "uuid"
+        password:
+          type: "string"
+    LoginResponse:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          format: "uuid"
+        token:
+          type: "string"

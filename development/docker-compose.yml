@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+
+  postgres-storage:
+    image: postgres:15.5-alpine3.19
+    container_name: notice-storage
+    hostname: notice-storage
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=demo
+    ports:
+      - "5432:5432"
+    restart: always

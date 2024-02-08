@@ -1,0 +1,61 @@
+server:
+  compression:
+    enabled: true
+
+spring:
+  threads:
+    virtual:
+      enabled: true
+  main:
+    banner-mode: off
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: "jdbc:postgresql://localhost:5432/demo?currentSchema=demo"
+    username: "user"
+    password: "password"
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        default_schema: "demo"
+        types:
+          print:
+            banner: false
+
+  flyway:
+    schemas: demo
+    table: schema_version
+    locations:
+      - classpath:db/migrations/2024
+
+application:
+  deadline: 15 # minutes
+
+
+management:
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  endpoint:
+    health:
+      enabled: true
+      probes:
+        enabled: true
+      show-components: never
+      show-details: never
+      group:
+        readiness:
+          include: readinessState, db
+    metrics.enabled: true
+    prometheus.enabled: true
+  endpoints.web.exposure.include: "*"
+  prometheus.metrics.export.enabled: true
+
+logging.level:
+  ROOT: info
+  com.epam: info
+  org.springframework: info

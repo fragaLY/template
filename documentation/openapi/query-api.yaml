@@ -1,0 +1,82 @@
+openapi: "3.0.3"
+info:
+  title: "trial API"
+  description: "trial API"
+  version: "1.0.0"
+servers:
+  - url: "https://trial"
+paths:
+  /api/v1/notices:
+    get:
+      summary: "GET api/v1/notices"
+      operationId: "get"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NoticeResponse"
+  /api/v1/notices/{id}:
+    get:
+      summary: "GET api/v1/notices/{id}"
+      operationId: "get"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NoticeResponse"
+components:
+  schemas:
+    NoticeResponse:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          format: "uuid"
+        date:
+          type: "string"
+          format: "date-time"
+        place:
+          type: "string"
+        pid:
+          type: "string"
+        casePresent:
+          type: "boolean"
+        type:
+          type: "string"
+          enum:
+            - "HOSPITAL"
+            - "DENTISTRY"
+            - "FAMILY_DOCTOR"
+            - "PRIVATE_PERSON"
+        status:
+          type: "string"
+          enum:
+            - "IN_PROCESS"
+            - "APPROVED"
+            - "REJECTED"
+        comment:
+          type: "string"
+        deadlineAt:
+          type: "string"
+          format: "date-time"
+        createdBy:
+          type: "string"
+        updatedBy:
+          type: "string"
+        createdAt:
+          type: "string"
+          format: "date-time"
+        updatedAt:
+          type: "string"
+          format: "date-time"

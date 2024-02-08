@@ -1,0 +1,45 @@
+@port = 8080
+@noticeId = 2c72641d-38eb-47d4-aa44-cc7e49bdc5d4
+
+###
+POST http://localhost:{{port}}/api/v1/login
+Content-Type: application/json
+
+{
+  "id": " 09401b0a-2c4f-4a7a-94e1-65ab3ad3a418",
+  "password": "234"
+}
+
+###
+GET http://localhost:{{port}}/api/v1/notices
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwOTQwMWIwYS0yYzRmLTRhN2EtOTRlMS02NWFiM2FkM2E0MTgiLCJyb2xlcyI6IkFETUlOSVNUUkFUT1IiLCJleHAiOjE5MjMzMjY0MzR9.D8n2KorBNpnTFZEsYlN2tInEp6cetcdaCkZN7Nb5XPw
+Accept: application/json
+
+###
+GET http://localhost:{{port}}/api/v1/notices/{{noticeId}}
+Accept: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmNDYxZGQyOS02YjZlLTQ5YTAtODQxMi0yZjEyNTU5NjI4N2QiLCJyb2xlcyI6IlVTRVIiLCJleHAiOjE5MjMzMjU4MjB9.hVPX0oNYuEordGOmynPJPxT-xbrCfgtlPr0eF9yBT4o
+
+###
+POST http://localhost:{{port}}/api/v1/notices
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmNDYxZGQyOS02YjZlLTQ5YTAtODQxMi0yZjEyNTU5NjI4N2QiLCJyb2xlcyI6IlVTRVIiLCJleHAiOjE5MjMzMjU4MjB9.hVPX0oNYuEordGOmynPJPxT-xbrCfgtlPr0eF9yBT4o
+
+{
+  "date": "2024-02-07T16:22:06.647235",
+  "place": "Mogilev",
+  "pid": "PID123456789",
+  "casePresent": false,
+  "type": "PRIVATE_PERSON",
+  "comment": "Private person visit"
+}
+
+###
+PUT http://localhost:8080/api/v1/notices/{{noticeId}}
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIwOTQwMWIwYS0yYzRmLTRhN2EtOTRlMS02NWFiM2FkM2E0MTgiLCJyb2xlcyI6IkFETUlOSVNUUkFUT1IiLCJleHAiOjE5MjMzMjY0MzR9.D8n2KorBNpnTFZEsYlN2tInEp6cetcdaCkZN7Nb5XPw
+
+{
+  "status": "APPROVED",
+  "comment": "Approved by administrator"
+}
